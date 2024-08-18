@@ -31,30 +31,16 @@ export const getSvgIcon = (name: String) => {
   }
 };
 
-export const getExtraDisplayName = (name: String) => {
-  switch (name.toLowerCase()) {
-    case "select the amount of sugar":
-      return "Sugar";
-    case "select type of milk":
-      return "Milk";
-    default:
-      return name;
-  }
-};
-
 export const getDisplayName = (name: string): string => {
   switch (name.toLowerCase()) {
     case "select the amount of sugar":
       return "Sugar";
     case "select type of milk":
       return "Milk";
-
     case "cow":
       return "Dairy";
-
     case "a lot":
       return "A Lot";
-
     default:
       return name.charAt(0).toUpperCase() + name.slice(1);
   }

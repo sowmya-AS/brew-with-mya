@@ -14,7 +14,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import Modal from "react-native-modal";
 import { Video } from "expo-av";
 import { setSelectedExtras } from "../redux/coffeeSlice";
-import { getSvgIcon, getExtraDisplayName } from "../utils/coffeeUtils";
+import { getSvgIcon, getDisplayName } from "../utils/coffeeUtils";
 import CoffeeTypes from "./CoffeeTypes";
 import CoffeeSizes from "./CoffeeSizes";
 import Extras from "./Extras";
@@ -159,11 +159,11 @@ const Overview = ({ navigation }: { navigation: NavigationProp }) => {
     <View style={tw`mb-2`}>
       <View style={tw`flex-row items-center p-4`}>
         {getSvgIcon(item.extraName)}
-        <ExtraText>{getExtraDisplayName(item.extraName)}</ExtraText>
+        <ExtraText>{getDisplayName(item.extraName)}</ExtraText>
       </View>
       <Separator />
       <SubsectionTile>
-        <SubsectionText>{item.subsectionName}</SubsectionText>
+        <SubsectionText>{getDisplayName(item.subsectionName)}</SubsectionText>
         <CheckCircle>
           <Icon name="checkmark" size={16} color="white" />
         </CheckCircle>
