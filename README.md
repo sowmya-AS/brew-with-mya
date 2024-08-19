@@ -17,8 +17,8 @@ Welcome to **Brew with Mya**, a delightful coffee brewing app where users can cu
 - **Coffee Selection Screen:** Choose your preferred coffee type.
 - **Size Selection Screen:** Pick the size of your coffee.
 - **Extras Selection Screen:** Add extras to customize your coffee.
-- **Review Screen:** Finalize your order by reviewing your selections before brewing.
-- **Brewing Screen:** A fun video animation of your coffee being brewed.
+- **Review Screen:** Finalize your order by reviewing your selections and proceed to brew your coffee.
+
 
 ## Technologies Used
 
