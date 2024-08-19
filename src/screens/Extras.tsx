@@ -141,7 +141,6 @@ const Extras = ({
                 <Icon name="checkmark" size={16} color="white" />
               )}
             </CheckCircle>
-            {/* <CheckCircle selected={selectedSubsections[extraId] === subsection._id} /> */}
           </SubsectionContainer>
         </TouchableOpacity>
       ))}
@@ -188,7 +187,7 @@ const Extras = ({
           scrollEnabled={false}
         />
 
-        {hasSelectedSubsections && (
+        {hasSelectedSubsections &&  !isModal && (
           <ClearExtrasButton onPress={handleClearExtras}>
             <ClearExtrasButtonText>Clear Extras</ClearExtrasButtonText>
           </ClearExtrasButton>

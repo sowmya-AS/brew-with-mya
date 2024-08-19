@@ -89,11 +89,38 @@ const Heading = styled.Text`
 const BrewedText = styled.Text`
   ${tw`text-xl font-bold self-center m-2 text-black `}
 `;
+const BrewedButton = styled.TouchableOpacity`
+  ${tw`self-center bg-black p-3 rounded-full mt-12 `}
+`;
+
+const CloseButton = styled.TouchableOpacity`
+  ${tw`self-end`}
+`;
 
 const CheckCircle = styled.View`
   ${tw`w-6 h-6 rounded-full items-center justify-center border-2 ml-4`}
   border-color: white;
   background-color: transparent;
+`;
+
+const ExtrasContainer = styled.View`
+  ${tw`mb-2`}
+`;
+const ExtrasContent = styled.View`
+  ${tw`flex-row items-center p-4`}
+`;
+const TileContainer = styled.View`
+  ${tw`flex-row items-center`}
+`;
+const ModalView = styled.View`
+  ${tw`w-full h-full m-2`}
+`;
+
+const EditModalView = styled.View`
+  ${tw`h-5/6 bg-white rounded-t-lg p-5`}
+`;
+const ModifyExtrasView = styled.View`
+  ${tw`flex-row justify-between `}
 `;
 
 const Overview = ({ navigation }: { navigation: NavigationProp }) => {
@@ -156,11 +183,11 @@ const Overview = ({ navigation }: { navigation: NavigationProp }) => {
   }: {
     item: { extraName: string; subsectionName: string };
   }) => (
-    <View style={tw`mb-2`}>
-      <View style={tw`flex-row items-center p-4`}>
+    <ExtrasContainer>
+      <ExtrasContent>
         {getSvgIcon(item.extraName)}
         <ExtraText>{getDisplayName(item.extraName)}</ExtraText>
-      </View>
+      </ExtrasContent>
       <Separator />
       <SubsectionTile>
         <SubsectionText>{getDisplayName(item.subsectionName)}</SubsectionText>
@@ -169,7 +196,7 @@ const Overview = ({ navigation }: { navigation: NavigationProp }) => {
         </CheckCircle>
       </SubsectionTile>
       <Separator />
-    </View>
+    </ExtrasContainer>
   );
 
   const renderModalContent = () => {
@@ -209,28 +236,27 @@ const Overview = ({ navigation }: { navigation: NavigationProp }) => {
         <Heading>Your order details</Heading>
         <Card>
           <EditableRow onPress={() => handleEditPress("CoffeeTypes")}>
-            <View style={tw`flex-row items-center`}>
+            <TileContainer>
               {getSvgIcon(type ? type.name : "default")}
               <TileText>{type?.name}</TileText>
-            </View>
+            </TileContainer>
             <EditText>Edit</EditText>
           </EditableRow>
           <Separator />
 
-          {/* Conditional rendering for the size */}
           {selectedSize ? (
             <EditableRow onPress={() => handleEditPress("Sizes")}>
-              <View style={tw`flex-row items-center`}>
+              <TileContainer>
                 {getSvgIcon(size ? size.name : "default")}
                 <TileText>{size?.name}</TileText>
-              </View>
+              </TileContainer>
               <EditText>Edit</EditText>
             </EditableRow>
           ) : (
             <EditableRow onPress={() => handleEditPress("Sizes")}>
-              <View style={tw`flex-row items-center`}>
+              <TileContainer>
                 <TileText>Select Size</TileText>
-              </View>
+              </TileContainer>
               <EditText>Add</EditText>
             </EditableRow>
           )}
@@ -245,20 +271,20 @@ const Overview = ({ navigation }: { navigation: NavigationProp }) => {
                 scrollEnabled={false}
               />
 
-              <View style={tw`flex-row justify-between mt-2`}>
+              <ModifyExtrasView>
                 <EditableRow onPress={() => handleEditPress("Extras")}>
                   <ExtraText>Edit Extras</ExtraText>
                 </EditableRow>
                 <EditableRow onPress={handleClearExtras}>
                   <ExtraText>Clear Extras</ExtraText>
                 </EditableRow>
-              </View>
+              </ModifyExtrasView>
             </>
           ) : (
             <EditableRow onPress={() => handleEditPress("Extras")}>
-              <View style={tw`flex-row items-center`}>
+              <TileContainer>
                 <ExtraText>No Extras</ExtraText>
-              </View>
+              </TileContainer>
               <EditText>Add</EditText>
             </EditableRow>
           )}
@@ -277,19 +303,19 @@ const Overview = ({ navigation }: { navigation: NavigationProp }) => {
           onBackdropPress={closeModal}
           style={tw`justify-end m-0`}
         >
-          <View style={tw`h-5/6 bg-white rounded-t-lg p-5`}>
-            <TouchableOpacity onPress={closeModal} style={tw`self-end`}>
+          <EditModalView>
+            <CloseButton onPress={closeModal}>
               <Icon name="close" size={24} color="black" />
-            </TouchableOpacity>
+            </CloseButton>
             {renderModalContent()}
-          </View>
+          </EditModalView>
         </Modal>
 
         <Modal
           isVisible={brewModalVisible}
           style={tw`justify-center items-center m-0 bg-white`}
         >
-          <View style={tw`w-full h-full m-2`}>
+          <ModalView>
             <Video
               source={require("../assets/coffee-brewing.mp4")}
               rate={0.7}
@@ -308,15 +334,12 @@ const Overview = ({ navigation }: { navigation: NavigationProp }) => {
             {isVideoDone && (
               <View>
                 <BrewedText>Your coffee is perfectly brewed!</BrewedText>
-                <TouchableOpacity
-                  onPress={handleBrewDone}
-                  style={tw` self-center bg-black p-3 rounded-full mt-12 `}
-                >
+                <BrewedButton onPress={handleBrewDone}>
                   <HomeText>Brew another coffee</HomeText>
-                </TouchableOpacity>
+                </BrewedButton>
               </View>
             )}
-          </View>
+          </ModalView>
         </Modal>
       </ScrollView>
     </Container>
