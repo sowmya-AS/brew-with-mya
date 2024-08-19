@@ -32,7 +32,6 @@ export default function App() {
           })}
         >
           <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-          {/* <Stack.Screen name="Home" component={Home}  /> */}
           <Stack.Screen name="CoffeeTypes" component={CoffeeTypes} />
           <Stack.Screen name="Sizes" component={CoffeeSizes} />
           <Stack.Screen name="Extras" component={Extras} />

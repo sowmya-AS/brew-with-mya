@@ -44,11 +44,5 @@ export interface Subsection {
   name: string;
 }
 
-export interface ExtraDetails {
-  extraName: string;
-  subsectionName: string;
-}
 
-export interface OverviewScreenProps {
-  navigation: any;
-}
+
